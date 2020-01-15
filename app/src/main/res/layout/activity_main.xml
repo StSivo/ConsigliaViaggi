@@ -6,11 +6,99 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_marginBottom="28dp"
+        android:text="@string/login"
+        app:layout_constraintBottom_toTopOf="@+id/tipo_struttura_text"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tipo_struttura_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/tipo_struttura_text"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tipo_struttura_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/tipo_struttura_spinner"
+        android:layout_width="140dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="32dp"
+        android:entries="@array/tipo_struttura"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toTopOf="@+id/fascia_prezzo_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/fascia_prezzo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/fascia_prezzo_text"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/prezzo_min"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/prezzo_min"
+        android:layout_width="140dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginLeft="46dp"
+        android:ems="10"
+        android:hint="@string/prezzo_min"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/citta_form"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/prezzo_max"
+        android:layout_width="140dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:ems="10"
+        android:hint="@string/prezzo_max"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/citta_form"
+        app:layout_constraintStart_toEndOf="@+id/prezzo_min" />
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
+        android:id="@+id/citta_form"
         android:layout_width="317dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
+        android:hint="@string/citt"
+        app:hintEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/nome_struttura_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/citta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nome_struttura_form"
+        android:layout_width="317dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
         android:hint="@string/nome_struttura"
         app:hintEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/ricerca_button"
@@ -23,80 +111,27 @@
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/proximity_checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:text="@string/cerca_per_vicinanza"
+        android:textColorLink="#4CAF50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome_struttura_form" />
+
     <Button
         android:id="@+id/ricerca_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
         android:layout_marginRight="64dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="104dp"
         android:text="@string/ricerca"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_marginBottom="100dp"
-        android:text="@string/cerca_per_vicinanza"
-        android:textColorLink="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
-        android:layout_width="317dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/citt"
-        app:hintEnabled="true"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/citta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:layout_marginBottom="216dp"
-        android:text="@string/login"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <EditText
-        android:id="@+id/prezzo_min"
-        android:layout_width="140dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginLeft="47dp"
-        android:ems="10"
-        android:hint="@string/prezzo_min"
-        android:importantForAutofill="no"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/prezzo_max"
-        android:layout_width="140dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginLeft="37dp"
-        android:ems="10"
-        android:hint="@string/prezzo_max"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
-        app:layout_constraintStart_toEndOf="@+id/prezzo_min"
-        android:importantForAutofill="no" />
+        app:layout_constraintEnd_toStartOf="@+id/proximity_checkBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

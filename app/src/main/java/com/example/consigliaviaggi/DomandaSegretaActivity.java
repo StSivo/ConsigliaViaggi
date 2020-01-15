@@ -9,19 +9,17 @@ import android.widget.Button;
 
 import com.example.consigliaviaggi.ui.login.LoginActivity;
 
-public class PasswordDimenticataActivity extends AppCompatActivity {
+public class DomandaSegretaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_password_dimenticata);
+        setContentView(R.layout.activity_domanda_segreta);
 
-        this.setTitle("Recupero Password");
-
-        Button invia_button=(Button)findViewById(R.id.email_password_dimenticata_button);
-        invia_button.setOnClickListener(new View.OnClickListener() {
+        Button domanda_segreta_button=(Button)findViewById(R.id.domanda_segreta_button);
+        domanda_segreta_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                startActivity(new Intent(PasswordDimenticataActivity.this, DomandaSegretaActivity.class));
+                startActivity(new Intent(DomandaSegretaActivity.this, ModificaPasswordActivity.class));
             }
         });
     }

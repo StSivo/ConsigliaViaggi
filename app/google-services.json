@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "235885182388",
+    "firebase_url": "https://consigliaviaggi1920-38.firebaseio.com",
+    "project_id": "consigliaviaggi1920-38",
+    "storage_bucket": "consigliaviaggi1920-38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235885182388:android:d406dbb7335c1bb71846e1",
+        "android_client_info": {
+          "package_name": "com.example.consigliaviaggi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235885182388-5nu1ihnumeuqla8vdng8bseebm3aqqsn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.consigliaviaggi",
+            "certificate_hash": "30e88f3601e68a99e8d04f8f614ee5354a5ae54e"
+          }
+        },
+        {
+          "client_id": "235885182388-e337md8k9otgmdg9bbg7n9bfj160unk3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBz8QwXtNTOomz48I9TTixrMTDIe0sQT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235885182388-e337md8k9otgmdg9bbg7n9bfj160unk3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

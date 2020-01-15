@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.consigliaviaggi.PasswordDimenticataActivity;
 import com.example.consigliaviaggi.R;
+import com.example.consigliaviaggi.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -123,6 +124,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, PasswordDimenticataActivity.class));
+            }
+        });
+
+        Button signup_button=(Button)findViewById(R.id.signup_button);
+        signup_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
             }
         });
 

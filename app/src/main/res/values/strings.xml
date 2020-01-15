@@ -1,23 +1,53 @@
 <resources>
     <string name="app_name">ConsigliaViaggi</string>
     <string name="nome_struttura">Nome struttura</string>
+    <string name="invia">Invia</string>
     <string name="prezzo_min">Prezzo Minimo</string>
     <string name="prezzo_max">Prezzo Massimo</string>
-    <string name="ricerca">RICERCA</string>
+    <string name="ricerca">Ricerca</string>
     <string name="cerca_per_vicinanza">Cerca per vicinanza</string>
     <string name="citt">Città</string>
+    <string name="fascia_prezzo_text">Selezionare la fascia di prezzo (in €)</string>
+    <string name="tipo_struttura_text">Selezionare il tipo di struttura</string>
+    <string-array name="tipo_struttura">
+        <item>Tutte</item>
+        <item>Hotel</item>
+        <item>Ristorante</item>
+        <item>Attrazione</item>
+    </string-array>
+
     <string name="login">Login</string>
+
     <string name="password_dimenticata">Password Dimenticata</string>
-    <string name="title_activity_login">Login</string>
-    <string name="title_activity_password_dimenticata">Recupero Password</string>
+
     <string name="prompt_username">Username</string>
+
     <string name="prompt_password">Password</string>
+    <string name="prompt_conferma_password">Conferma Password</string>
+
     <string name="signup">Iscriviti</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <string name="title_activity_password_dimenticata">Recupero Password</string>
     <string name="prompt_email">"Email"</string>
     <string name="prompt_email_text">"Inserisci l'email per ricavare la domanda segreta personale."</string>
+
+    <string name="prompt_domanda_segreta_text">"Rispondi alla domanda segreta per poter modificare la password."</string>
+
+    <string name="prompt_modifica_password_text">"Inserisci una nuova password."</string>
+    <string name="prompt_nuova_password">Nuova Password</string>
+
+    <string name="prompt_nome">"Nome"</string>
+    <string name="prompt_cognome">"Cognome"</string>
+    <string name="prompt_domanda_segreta">"Domanda Segreta"</string>
+    <string name="prompt_risposta">"Risposta"</string>
+
+    <string name="prompt_iscrizione_text">"Inserisci i dati nei campi sottoindicati per creare un account."</string>
+
+    <string name="prompt_map">"Visualizza su mappa"</string>
+    <string name="title_activity_maps">Mappa</string>
 </resources>
