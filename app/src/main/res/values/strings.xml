@@ -50,4 +50,15 @@
 
     <string name="prompt_map">"Visualizza su mappa"</string>
     <string name="title_activity_maps">Mappa</string>
+
+    <string name="prompt_aggiungi_recensione">"Aggiungi Recensione"</string>
+
+    <string name="prompt_filtro">Filtri:</string>
+    <string name="filtro_recensione_text">Selezionare il tipo di filtraggio</string>
+    <string name="valutazione_text">Valutazione</string>
+    <string-array name="filtro_recensione">
+        <item>Nessuno</item>
+        <item>Ordina per numero stelle crescente</item>
+        <item>Ordina per numero stelle decrescente</item>
+    </string-array>
 </resources>

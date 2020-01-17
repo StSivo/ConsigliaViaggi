@@ -6,78 +6,21 @@ import android.os.Parcelable;
 public class Struttura implements Parcelable {
 
     private String nome;
-    private Double valutazione_media;
+    private float valutazione_media;
     private String citta;
     private String indirizzo;
     private String descrizione;
     private String tipo;
     private int prezzo_min;
     private int prezzo_max;
-
-    /*public enum Tipo_struttura{
-        Hotel,
-        Ristorante,
-        Attrazione
-    } */
-
-    public Struttura(){}
-
-    protected Struttura(Parcel in) {
-        nome = in.readString();
-        if (in.readByte() == 0) {
-            valutazione_media = null;
-        } else {
-            valutazione_media = in.readDouble();
-        }
-        citta = in.readString();
-        indirizzo = in.readString();
-        descrizione = in.readString();
-        tipo = in.readString();
-        prezzo_min = in.readInt();
-        prezzo_max = in.readInt();
-    }
-
-    public static final Creator<Struttura> CREATOR = new Creator<Struttura>() {
-        @Override
-        public Struttura createFromParcel(Parcel in) {
-            return new Struttura(in);
-        }
-
-        @Override
-        public Struttura[] newArray(int size) {
-            return new Struttura[size];
-        }
-
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
-        dest.writeString(nome);
-        if (valutazione_media == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeDouble(valutazione_media);
-        }
-        dest.writeString(citta);
-        dest.writeString(indirizzo);
-        dest.writeString(descrizione);
-        dest.writeString(tipo);
-        dest.writeInt(prezzo_min);
-        dest.writeInt(prezzo_max);
-    }
+    private Double lat;
+    private Double lon;
 
     public String getNome() {
         return nome;
     }
 
-    public Double getValutazioneMedia() {
+    public float getValutazione_media() {
         return valutazione_media;
     }
 
@@ -105,11 +48,19 @@ public class Struttura implements Parcelable {
         return prezzo_max;
     }
 
+    public Double getLat() {
+        return lat;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
     public void setNome(String nome) {
         this.nome=nome;
     }
 
-    public void setValutazione_media(Double valutazione_media) {
+    public void setValutazione_media(float valutazione_media) {
         this.valutazione_media=valutazione_media;
     }
 
@@ -133,7 +84,87 @@ public class Struttura implements Parcelable {
         this.prezzo_min=prezzo_min;
     }
 
-    public void setPrezzo_max(int prezzo_max) {
-        this.prezzo_max=prezzo_max;
+    public void setPrezzo_max(int prezzo_max) { this.prezzo_max=prezzo_max; }
+
+    public void setLat(Double lat) { this.lat=lat; }
+
+    public void setLon(Double lon) { this.lon=lon; }
+
+    public Struttura (Struttura another){
+        this.nome = another.nome;
+        this.valutazione_media = another.valutazione_media;
+        this.citta = another.citta;
+        this.indirizzo =another.indirizzo;
+        this.descrizione=another.descrizione;
+        this.tipo = another.tipo;
+        this.prezzo_min = another.prezzo_min;
+        this.prezzo_max = another.prezzo_max;
+        this.lat = another.lat;
+        this.lon = another.lon;
+
+    }
+
+    public Struttura(){}
+
+    protected Struttura(Parcel in) {
+        nome = in.readString();
+        valutazione_media = in.readFloat();
+        citta = in.readString();
+        indirizzo = in.readString();
+        descrizione = in.readString();
+        tipo = in.readString();
+        prezzo_min = in.readInt();
+        prezzo_max = in.readInt();
+        if (in.readByte() == 0) {
+            lat = null;
+        } else {
+            lat = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            lon = null;
+        } else {
+            lon = in.readDouble();
+        }
+    }
+
+    public static final Creator<Struttura> CREATOR = new Creator<Struttura>() {
+        @Override
+        public Struttura createFromParcel(Parcel in) {
+            return new Struttura(in);
+        }
+
+        @Override
+        public Struttura[] newArray(int size) {
+            return new Struttura[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nome);
+        dest.writeFloat(valutazione_media);
+        dest.writeString(citta);
+        dest.writeString(indirizzo);
+        dest.writeString(descrizione);
+        dest.writeString(tipo);
+        dest.writeInt(prezzo_min);
+        dest.writeInt(prezzo_max);
+        if (lat == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(lat);
+        }
+        if (lon == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(lon);
+        }
     }
 }

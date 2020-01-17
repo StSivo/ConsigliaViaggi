@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VisualizzaStrutturaActivity">
+
+    <TextView
+        android:id="@+id/nome_struttura_text"
+        android:layout_width="384dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:textAllCaps="true"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/citta_struttura_text"
+        android:layout_width="86dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome_struttura_text" />
+
+    <TextView
+        android:id="@+id/fascia_prezzo_struttura_text"
+        android:layout_width="167dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome_struttura_text" />
+
+    <TextView
+        android:id="@+id/indirizzo_struttura_text"
+        android:layout_width="384dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/citta_struttura_text" />
+
+    <TextView
+        android:id="@+id/descrizione_struttura_text"
+        android:layout_width="384dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:scrollbars="vertical"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/indirizzo_struttura_text" />
+
+    <TextView
+        android:id="@+id/valutazione_media_struttura_text"
+        android:layout_width="240dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="44dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descrizione_struttura_text" />
+
+    <ListView
+        android:id="@+id/visualizza_recensioni_view"
+        android:layout_width="409dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valutazione_media_struttura_text" />
+
+    <Button
+        android:id="@+id/aggiungi_recensione_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/prompt_aggiungi_recensione"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/visualizza_recensioni_view" />
+
+    <Spinner
+        android:id="@+id/seleziona_filtro_spinner"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:entries="@array/filtro_recensione"
+        android:prompt="@string/filtro_recensione_text"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descrizione_struttura_text" />
+
+    <TextView
+        android:id="@+id/filtro_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/prompt_filtro"
+        app:layout_constraintBottom_toTopOf="@+id/visualizza_recensioni_view"
+        app:layout_constraintEnd_toStartOf="@+id/seleziona_filtro_spinner" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

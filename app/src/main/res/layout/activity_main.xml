@@ -34,6 +34,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="32dp"
         android:entries="@array/tipo_struttura"
+        android:prompt="@string/tipo_struttura_text"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toTopOf="@+id/fascia_prezzo_text"
         app:layout_constraintEnd_toEndOf="parent"

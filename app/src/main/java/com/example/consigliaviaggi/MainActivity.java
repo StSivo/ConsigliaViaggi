@@ -1,6 +1,5 @@
 package com.example.consigliaviaggi;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -8,7 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AlertDialog;
+import android.content.DialogInterface;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
         Button ricerca_button=(Button)findViewById(R.id.ricerca_button);
         Button login_button=(Button)findViewById(R.id.login_button);
 
+        AlertDialog.Builder miaAlert = new AlertDialog.Builder(this);
+        miaAlert.setTitle("ATTENZIONE");
+        miaAlert.setMessage("La ricerca non ha prodotto risultati.");
+        AlertDialog alert = miaAlert.create();
+
         ricerca_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
 
@@ -45,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 String nome_struttura;
                 String citta;
                 String tipo_struttura;
+
                 if(prezzo_min_form.getText().toString().isEmpty()){
                     prezzo_min=0;
                 }
@@ -62,12 +71,15 @@ public class MainActivity extends AppCompatActivity {
                 citta=citta_form.getEditText().getText().toString();
                 tipo_struttura=tipo_struttura_spinner.getSelectedItem().toString();
 
-                System.out.println("MAIN: "+ prezzo_max);
-                System.out.println("MAIN: "+ prezzo_min);
                 List<Struttura> risultati = HomeController.Ricerca(nome_struttura,citta,tipo_struttura,prezzo_min,prezzo_max);
                 System.out.println("MainActivity: " + risultati.size());
-                startActivity(new Intent(MainActivity.this, RicercaStrutturaActivity.class)
-                        .putParcelableArrayListExtra("risultati", (ArrayList<? extends Parcelable>) risultati));
+                if(risultati.size()==0){
+                    alert.show();
+                }
+                else{
+                    startActivity(new Intent(MainActivity.this, RicercaStrutturaActivity.class)
+                            .putParcelableArrayListExtra("risultati", (ArrayList<? extends Parcelable>) risultati));
+                }
 
             }
         });
@@ -79,53 +91,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
-    /*public static List<Struttura> Ricerca(String nome_struttura, String citta, String tipo_struttura,int prezzo_min, int prezzo_max){
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        List<Struttura> risultati = new ArrayList<Struttura>();
-        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setTimestampsInSnapshotsEnabled(true)
-                .build();
-        db.setFirestoreSettings(settings);
-
-        // Create a reference to the Strutture collection
-        CollectionReference struttureRef = db.collection("Strutture");
-
-        // Create a query against the collection.
-        Query query = struttureRef;
-
-        if (!nome_struttura.isEmpty()) {
-            query = query.whereEqualTo("nome", nome_struttura);
-        }
-        if (!citta.isEmpty()) {
-            query = query.whereEqualTo("citta", citta);
-        }
-        if (!tipo_struttura.equals("Tutte")) {
-            query = query.whereEqualTo("tipo", tipo_struttura);
-        }
-        query=query.whereGreaterThanOrEqualTo("prezzo_min",prezzo_min).whereLessThanOrEqualTo("prezzo_max",prezzo_max);
-
-
-        //After creating a query object, use the get() function to retrieve the results
-        Task<QuerySnapshot> task = query.get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {}
-                });
-        while(!task.isComplete()){}
-        if (task.isSuccessful()) {
-            for (QueryDocumentSnapshot document : task.getResult()) {
-                Log.d("01", document.getId() + " => " + document.getData());
-                Struttura struttura =  document.toObject(Struttura.class);
-                risultati.add(struttura);
-            }
-        } else {
-            Log.d("01", "Error getting documents: ", task.getException());
-        }
-        System.out.println("Ricerca: " + risultati.size());
-        return risultati;
-    }*/
 
 }

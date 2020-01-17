@@ -2,14 +2,19 @@ package com.example.consigliaviaggi;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.webkit.GeolocationPermissions;
 
+import com.example.consigliaviaggi.Model.Struttura;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -39,9 +44,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        //Retrive data from previous activity
+        List<Struttura> risultati = getIntent().getParcelableArrayListExtra("risultati");
+
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng napoli = new LatLng(40.839981, 14.252540);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(napoli,15));
+
+        for (int i=0;i<risultati.size();i++){
+            System.out.println("MAPS: " + risultati.get(i).getLat() + " " + risultati.get(i).getLon());
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(risultati.get(i).getLat(),risultati.get(i).getLon())).title(risultati.get(i).getNome()));
+        }
+
     }
 }
