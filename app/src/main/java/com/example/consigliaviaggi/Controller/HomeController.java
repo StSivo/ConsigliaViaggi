@@ -19,7 +19,8 @@ import java.util.List;
 
 public class HomeController {
 
-    public static List<Struttura> Ricerca(String nome_struttura, String citta, String tipo_struttura, int prezzo_min, int prezzo_max){
+    public static List<Struttura> Ricerca(String nome_struttura, String citta, String tipo_struttura,
+                                          int prezzo_min, int prezzo_max){
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<Struttura> risultati = new ArrayList<>();
@@ -62,6 +63,7 @@ public class HomeController {
             Log.d("01", "Error getting documents: ", task.getException());
         }
 
+        //Apply price range filters
         for(int i=0; i<risultati.size(); i++) {
             if((risultati.get(i).getPrezzo_min()<prezzo_min)|(risultati.get(i).getPrezzo_max()>prezzo_max)) {
                 risultati.remove(i);

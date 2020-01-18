@@ -1,19 +1,24 @@
 package com.example.consigliaviaggi;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ProgressBar;
+
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AlertDialog;
-import android.content.DialogInterface;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.consigliaviaggi.Controller.HomeController;
 import com.example.consigliaviaggi.Model.Struttura;
@@ -23,7 +28,12 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
+
 public class MainActivity extends AppCompatActivity {
+
+    private final int REQUEST_LOCATION_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button ricerca_button=(Button)findViewById(R.id.ricerca_button);
         Button login_button=(Button)findViewById(R.id.login_button);
+        CheckBox proximity_checkBox=(CheckBox)findViewById(R.id.proximity_checkBox);
 
         AlertDialog.Builder miaAlert = new AlertDialog.Builder(this);
         miaAlert.setTitle("ATTENZIONE");
@@ -46,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
                 TextInputLayout citta_form=(TextInputLayout) findViewById(R.id.citta_form);
                 EditText prezzo_min_form=(EditText) findViewById(R.id.prezzo_min);
                 EditText prezzo_max_form=(EditText) findViewById(R.id.prezzo_max);
-                CheckBox proxmity_checkBox=(CheckBox)findViewById(R.id.proximity_checkBox);
 
                 int prezzo_min;
                 int prezzo_max;
@@ -71,16 +81,46 @@ public class MainActivity extends AppCompatActivity {
                 citta=citta_form.getEditText().getText().toString();
                 tipo_struttura=tipo_struttura_spinner.getSelectedItem().toString();
 
+                //Let the controller handle the Firestore query
                 List<Struttura> risultati = HomeController.Ricerca(nome_struttura,citta,tipo_struttura,prezzo_min,prezzo_max);
-                System.out.println("MainActivity: " + risultati.size());
+
+                //Filter results by proximity.
+                //We don't need to check the permissions as we have already checked the box.
+                if(proximity_checkBox.isChecked() & !risultati.isEmpty()){
+                    Location user = getLocation();
+                    double lat = user.getLatitude();
+                    double lon = user.getLongitude();
+                    final double offset = 0.005;
+                    for (int i = 0; i < risultati.size(); i++) {
+                        if(!(lat-offset<=risultati.get(i).getLat() && lon-offset<=risultati.get(i).getLon() && lat+offset>=risultati.get(i).getLat() && lon+offset>=risultati.get(i).getLon())){
+                            risultati.remove(i);
+                            i--;
+                        }
+                    }
+                }
+
+                //Alert for no results search
                 if(risultati.size()==0){
                     alert.show();
                 }
                 else{
                     startActivity(new Intent(MainActivity.this, RicercaStrutturaActivity.class)
-                            .putParcelableArrayListExtra("risultati", (ArrayList<? extends Parcelable>) risultati));
+                            .putParcelableArrayListExtra("risultati", (ArrayList<? extends Parcelable>) risultati)
+                            .putExtra("proximity_enabled", proximity_checkBox.isChecked()));
                 }
 
+            }
+        });
+
+        proximity_checkBox.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if(proximity_checkBox.isChecked()){
+                    requestLocationPermission();
+                    if(ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.ACCESS_FINE_LOCATION)==-1){
+                        proximity_checkBox.setChecked(false);
+                    }
+                }
             }
         });
 
@@ -90,6 +130,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @AfterPermissionGranted(REQUEST_LOCATION_PERMISSION)
+    public void requestLocationPermission() {
+        String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION};
+        if(!EasyPermissions.hasPermissions(this, perms)) {
+            EasyPermissions.requestPermissions(this, "Autorizzare i seguenti permessi.", REQUEST_LOCATION_PERMISSION, perms);
+        }
+    }
+
+    public Location getLocation() {
+        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        if (locationManager != null) {
+            @SuppressLint("MissingPermission") Location lastKnownLocationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (lastKnownLocationGPS != null) {
+                return lastKnownLocationGPS;
+            } else {
+                @SuppressLint("MissingPermission") Location loc =  locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+                System.out.println("1::"+loc);
+                System.out.println("2::"+loc.getLatitude());
+                return loc;
+            }
+        } else {
+            return null;
+        }
     }
 
 }

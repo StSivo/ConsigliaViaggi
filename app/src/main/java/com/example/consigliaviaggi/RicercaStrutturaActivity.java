@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ScrollView;
 
 import com.example.consigliaviaggi.Model.Struttura;
 
@@ -27,7 +26,6 @@ public class RicercaStrutturaActivity extends AppCompatActivity {
 
         //Retrive data from previous activity
         List<Struttura> risultati = getIntent().getParcelableArrayListExtra("risultati");
-        System.out.println("RicercaStruttura " + risultati.size());
 
         ListView risultati_ricerca_view = (ListView) findViewById(R.id.risultati_ricerca_view);
         Button visualizza_map_button=(Button)findViewById(R.id.visualizza_map_button);
@@ -40,11 +38,11 @@ public class RicercaStrutturaActivity extends AppCompatActivity {
 
         //Show results
         risultati_ricerca_view.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,risultati_ricerca));
-
         visualizza_map_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 startActivity(new Intent(RicercaStrutturaActivity.this, MapsActivity.class)
-                        .putParcelableArrayListExtra("risultati", (ArrayList<? extends Parcelable>) risultati));
+                        .putParcelableArrayListExtra("risultati", (ArrayList<? extends Parcelable>) risultati)
+                        .putExtra("proximity_enabled", getIntent().getExtras().getBoolean("proximity_enabled")));
             }
         });
 

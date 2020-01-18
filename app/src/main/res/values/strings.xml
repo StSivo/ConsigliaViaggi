@@ -48,7 +48,7 @@
 
     <string name="prompt_iscrizione_text">"Inserisci i dati nei campi sottoindicati per creare un account."</string>
 
-    <string name="prompt_map">"Visualizza su mappa"</string>
+    <string name="prompt_map">"Visualizza mappa"</string>
     <string name="title_activity_maps">Mappa</string>
 
     <string name="prompt_aggiungi_recensione">"Aggiungi Recensione"</string>
