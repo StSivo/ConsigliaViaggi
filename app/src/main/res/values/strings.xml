@@ -33,8 +33,8 @@
     <string name="login_failed">"Login failed"</string>
 
     <string name="title_activity_password_dimenticata">Recupero Password</string>
-    <string name="prompt_email">"Email"</string>
-    <string name="prompt_email_text">"Inserisci l'email per ricavare la domanda segreta personale."</string>
+    <string name="prompt_email">"E-mail"</string>
+    <string name="prompt_email_text">"Inserisci l'e-mail per ricavare la domanda segreta personale."</string>
 
     <string name="prompt_domanda_segreta_text">"Rispondi alla domanda segreta per poter modificare la password."</string>
 
@@ -52,6 +52,7 @@
     <string name="title_activity_maps">Mappa</string>
 
     <string name="prompt_aggiungi_recensione">"Aggiungi Recensione"</string>
+    <string name="prompt_invia_recensione">"Invia Recensione"</string>
 
     <string name="prompt_filtro">Filtri:</string>
     <string name="filtro_recensione_text">Selezionare il tipo di filtraggio</string>
@@ -60,5 +61,20 @@
         <item>Nessuno</item>
         <item>Ordina per numero stelle crescente</item>
         <item>Ordina per numero stelle decrescente</item>
+    </string-array>
+    <string name="modifica_profilo">Modifica profilo</string>
+    <string name="logout">Logout</string>
+
+    <string name="prompt_titolo_recensione">Titolo</string>
+    <string name="prompt_commento_recensione">Commento</string>
+    <string name="prompt_recensione_text">Inserisci i dati nei campi seguenti per richiedere un\'aggiunta di una nuova recensione alla struttura.</string>
+    <string name="voto_recensione_text">Voto:</string>
+    <string name="switch_recensione_text">Pubblica con nome e cognome</string>
+    <string-array name="voto_recensione">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 </resources>

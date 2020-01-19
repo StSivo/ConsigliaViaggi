@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AggiungiRecensioneActivity">
+
+    <EditText
+        android:id="@+id/titolo_recensione_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:ems="10"
+        android:hint="@string/prompt_titolo_recensione"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/voto_recensione_spinner"
+        android:layout_width="75dp"
+        android:layout_height="43dp"
+        android:entries="@array/voto_recensione"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.202"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titolo_recensione_form" />
+
+    <EditText
+        android:id="@+id/commento_recensione_form"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="188dp"
+        android:ems="10"
+        android:hint="@string/prompt_commento_recensione"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/voto_recensione_spinner" />
+
+    <TextView
+        android:id="@+id/prompt_recensione_text"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:text="@string/prompt_recensione_text"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/voto_recensione_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/voto_recensione_text"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/voto_recensione_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/titolo_recensione_form" />
+
+    <Button
+        android:id="@+id/invia_recensione_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/prompt_invia_recensione"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commento_recensione_form" />
+
+    <Switch
+        android:id="@+id/dati_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/switch_recensione_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/voto_recensione_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/titolo_recensione_form" />
+</androidx.constraintlayout.widget.ConstraintLayout>

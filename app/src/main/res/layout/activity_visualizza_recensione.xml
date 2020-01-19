@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titolo_recensione_text" />
 
     <TextView
-        android:id="@+id/commento_recensione_text"
+        android:id="@+id/commento_recensione_form"
         android:layout_width="409dp"
         android:layout_height="300dp"
         android:layout_marginTop="40dp"

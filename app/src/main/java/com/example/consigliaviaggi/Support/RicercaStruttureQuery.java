@@ -1,4 +1,4 @@
-package com.example.consigliaviaggi.Controller;
+package com.example.consigliaviaggi.Support;
 
 import android.util.Log;
 
@@ -17,7 +17,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeController {
+public class RicercaStruttureQuery {
 
     public static List<Struttura> Ricerca(String nome_struttura, String citta, String tipo_struttura,
                                           int prezzo_min, int prezzo_max){

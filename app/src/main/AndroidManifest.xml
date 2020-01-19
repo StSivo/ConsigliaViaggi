@@ -8,7 +8,7 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -48,8 +48,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HomeLoggedActivity" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".LoginActivity"
             android:label="Login"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -59,11 +60,11 @@
         <activity
             android:name=".SignupActivity"
             android:label="Signup"
-            android:parentActivityName=".ui.login.LoginActivity" />
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".PasswordDimenticataActivity"
             android:label="Recupero Password"
-            android:parentActivityName=".ui.login.LoginActivity" />
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".DomandaSegretaActivity"
             android:label="Recupero Password"
@@ -84,6 +85,15 @@
             android:name=".VisualizzaRecensioneActivity"
             android:label="Info Recensione"
             android:parentActivityName=".VisualizzaRecensioneActivity" />
+        <activity
+            android:name=".AggiungiRecensioneActivity"
+            android:label="Aggiungi Recensione"
+            android:parentActivityName=".AggiungiRecensioneActivity" />
+
+        <activity
+            android:name=".ModificaProfiloActivity"
+            android:label="Modifica Profilo"
+            android:parentActivityName=".ModificaPasswordActivity"></activity>
     </application>
 
 </manifest>

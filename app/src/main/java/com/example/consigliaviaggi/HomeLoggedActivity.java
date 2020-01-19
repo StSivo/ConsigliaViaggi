@@ -1,5 +1,8 @@
 package com.example.consigliaviaggi;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,16 +15,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import com.example.consigliaviaggi.Support.RicercaStruttureQuery;
 import com.example.consigliaviaggi.Model.Struttura;
+import com.example.consigliaviaggi.Support.RicercaStruttureQuery;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,7 +29,7 @@ import java.util.List;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeLoggedActivity extends AppCompatActivity {
 
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private FirebaseAuth mAuth;
@@ -39,20 +37,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser()!=null){
-            mAuth.signOut();
-        }
+        setContentView(R.layout.activity_home_logged);
 
+        Button logout_button = (Button)findViewById(R.id.logout_button);
         Button ricerca_button=(Button)findViewById(R.id.ricerca_button);
-        Button login_button=(Button)findViewById(R.id.login_button);
         CheckBox proximity_checkBox=(CheckBox)findViewById(R.id.proximity_checkBox);
 
-        AlertDialog.Builder miaAlert = new AlertDialog.Builder(this);
-        miaAlert.setTitle("ATTENZIONE");
-        miaAlert.setMessage("La ricerca non ha prodotto risultati.");
-        AlertDialog noResults_alert = miaAlert.create();
+        AlertDialog.Builder miaAlert2 = new AlertDialog.Builder(this);
+        miaAlert2.setTitle("ATTENZIONE");
+        miaAlert2.setMessage("La ricerca non ha prodotto risultati.");
+        AlertDialog noresults_alert = miaAlert2.create();
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
         ricerca_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
@@ -106,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
 
                 //Alert for no results search
                 if(risultati.size()==0){
-                    noResults_alert.show();
+                    noresults_alert.show();
                 }
                 else{
-                    startActivity(new Intent(MainActivity.this, RicercaStrutturaActivity.class)
+                    startActivity(new Intent(HomeLoggedActivity.this, RicercaStrutturaActivity.class)
                             .putParcelableArrayListExtra("risultati", (ArrayList<? extends Parcelable>) risultati)
                             .putExtra("proximity_enabled", proximity_checkBox.isChecked()));
                 }
@@ -117,21 +114,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        proximity_checkBox.setOnClickListener(new View.OnClickListener(){
-            @Override
+        logout_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
-                if(proximity_checkBox.isChecked()){
-                    requestLocationPermission();
-                    if(ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.ACCESS_FINE_LOCATION)==-1){
-                        proximity_checkBox.setChecked(false);
-                    }
-                }
-            }
-        });
-
-        login_button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view){
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                mAuth.signOut();
+                Toast.makeText(HomeLoggedActivity.this, "Logout Effettuato.", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(HomeLoggedActivity.this, MainActivity.class));
             }
         });
 
@@ -160,14 +147,13 @@ public class MainActivity extends AppCompatActivity {
             if (lastKnownLocationGPS != null) {
                 return lastKnownLocationGPS;
             } else {
-                @SuppressLint("MissingPermission") Location loc =  locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
-                System.out.println("1::"+loc);
-                System.out.println("2::"+loc.getLatitude());
+                @SuppressLint("MissingPermission") Location loc = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+                System.out.println("1::" + loc);
+                System.out.println("2::" + loc.getLatitude());
                 return loc;
             }
         } else {
             return null;
         }
     }
-
 }

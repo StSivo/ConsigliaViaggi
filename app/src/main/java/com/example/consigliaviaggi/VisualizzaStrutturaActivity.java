@@ -1,5 +1,6 @@
 package com.example.consigliaviaggi;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,30 +9,40 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.consigliaviaggi.Controller.VisualizzaStrutturaController;
+import com.example.consigliaviaggi.Support.RecensioniStrutturaQuery;
 import com.example.consigliaviaggi.Model.Recensione;
 import com.example.consigliaviaggi.Model.Struttura;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class VisualizzaStrutturaActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizza_struttura);
 
+        mAuth = FirebaseAuth.getInstance();
+
+        AlertDialog.Builder miaAlert = new AlertDialog.Builder(this);
+        miaAlert.setTitle("ATTENZIONE");
+        miaAlert.setMessage("Effettuare il Login per aggiungere una recensione.");
+        AlertDialog notLogged_alert = miaAlert.create();
+
         List<String> risultati_ricerca = new ArrayList<>();
         List<Recensione> risultati_no_order = new ArrayList<Recensione>();
 
+        Button aggiungi_recensione_button = (Button)findViewById(R.id.aggiungi_recensione_button);
         TextView nome_struttura_text = (TextView)findViewById(R.id.nome_struttura_text);
         TextView citta_struttura_text = (TextView)findViewById(R.id.citta_struttura_text);
         TextView fascia_prezzo_struttura_text = (TextView)findViewById(R.id.fascia_prezzo_struttura_text);
@@ -43,9 +54,9 @@ public class VisualizzaStrutturaActivity extends AppCompatActivity {
         ListView visualizza_recensioni_view = (ListView)findViewById(R.id.visualizza_recensioni_view);
         Spinner seleziona_filtro_spinner = (Spinner)findViewById(R.id.seleziona_filtro_spinner);
 
-        Struttura struttura_selezionata = (Struttura) getIntent().getParcelableExtra("struttura_selezionata");
+        Struttura struttura_selezionata = getIntent().getParcelableExtra("struttura_selezionata");
 
-        List<Recensione> risultati = VisualizzaStrutturaController.RicercaRecensione(struttura_selezionata.getIndirizzo());
+        List<Recensione> risultati = RecensioniStrutturaQuery.RicercaRecensione(struttura_selezionata.getIndirizzo());
 
         //Fill a list to get a no order filter
         risultati_no_order.addAll(risultati);
@@ -105,5 +116,19 @@ public class VisualizzaStrutturaActivity extends AppCompatActivity {
                         .putExtra("recensione_selezionata",recensione_selezionata));
             }
         });
+
+        aggiungi_recensione_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                if(mAuth.getCurrentUser()!=null){
+                    startActivity(new Intent(VisualizzaStrutturaActivity.this, AggiungiRecensioneActivity.class)
+                            .putExtra("struttura", struttura_selezionata));
+                }
+                else{
+                    notLogged_alert.show();
+                }
+
+            }
+        });
+
     }
 }

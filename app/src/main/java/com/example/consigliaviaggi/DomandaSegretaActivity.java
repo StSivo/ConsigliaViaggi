@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.consigliaviaggi.ui.login.LoginActivity;
+import com.example.consigliaviaggi.LoginActivity;
 
 public class DomandaSegretaActivity extends AppCompatActivity {
 
