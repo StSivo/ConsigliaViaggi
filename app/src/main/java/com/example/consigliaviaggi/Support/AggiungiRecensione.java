@@ -21,7 +21,7 @@ import com.google.firestore.v1beta1.WriteResult;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AggiungiRecensioneUpload {
+public class AggiungiRecensione {
 
 
 

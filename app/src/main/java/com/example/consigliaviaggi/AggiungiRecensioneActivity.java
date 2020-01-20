@@ -13,7 +13,7 @@ import android.widget.Switch;
 
 import com.example.consigliaviaggi.Model.Struttura;
 import com.example.consigliaviaggi.Model.Utente;
-import com.example.consigliaviaggi.Support.AggiungiRecensioneUpload;
+import com.example.consigliaviaggi.Support.AggiungiRecensione;
 import com.example.consigliaviaggi.Support.CheckRecensioniUtente;
 import com.example.consigliaviaggi.Support.DatiUtenteQuery;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,7 +64,7 @@ public class AggiungiRecensioneActivity extends AppCompatActivity {
                 Struttura struttura = getIntent().getParcelableExtra("struttura");
 
                 if(CheckRecensioniUtente.CheckRecensioni(utente.getUsername(),struttura.getIndirizzo())) {
-                    AggiungiRecensioneUpload.AggiungiRecensioneUp(titolo_recensione, voto_recensione,
+                    AggiungiRecensione.AggiungiRecensioneUp(titolo_recensione, voto_recensione,
                             commento_recensione, struttura, utente, dati_switch.isChecked());
                 }
                 else{

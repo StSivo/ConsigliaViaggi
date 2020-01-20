@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,6 +67,22 @@ public class ModificaProfiloActivity extends AppCompatActivity {
         miaAlert4.setMessage("Nessun campo è stato modificato.");
         AlertDialog noModifiche_alert = miaAlert4.create();
 
+        AlertDialog.Builder miaAlert5 = new AlertDialog.Builder(this);
+        miaAlert5.setTitle("ATTENZIONE");
+        miaAlert5.setMessage("Formato e-mail non corretto.");
+        AlertDialog emailFormat_alert = miaAlert5.create();
+
+        AlertDialog.Builder miaAlert6 = new AlertDialog.Builder(this);
+        miaAlert6.setTitle("ATTENZIONE");
+        miaAlert6.setMessage("I seguenti campi non possono essere vuoti:" +
+                "\n\"Nome\"\n\"Cognome\"\n\"Username\"\n\"E-mail\"\n\"Domanda Segreta\"\n\"Risposta\"");
+        AlertDialog campi_alert = miaAlert6.create();
+
+        AlertDialog.Builder miaAlert7 = new AlertDialog.Builder(this);
+        miaAlert7.setTitle("ATTENZIONE");
+        miaAlert7.setMessage("La password deve essere di almeno 6 caratteri");
+        AlertDialog passwordCorta_alert = miaAlert7.create();
+
         Button modifica_button = findViewById(R.id.modifica_button);
         EditText nome_form = findViewById(R.id.nome_form);
         EditText cognome_form = findViewById(R.id.cognome_form);
@@ -97,78 +114,40 @@ public class ModificaProfiloActivity extends AppCompatActivity {
                 String password = password_form.getText().toString();
                 String cPassword = cPassword_form.getText().toString();
 
-                int updateRet = DatiUtenteUpdate.DatiUtenteUpdate(utente,nome,cognome,username,email,
-                        domanda_segreta,risposta,password,cPassword);
-                if(updateRet==-1){
-                    usernamePreso_alert.show();
-                }
-                else if(updateRet==-2){
-                    emailPresa_alert.show();
-                }
-                else if(updateRet==-3){
-                    passwordDiverse_alert.show();
-                }
-                else if(updateRet==-4){
-                    noModifiche_alert.show();
-                }
-                else{
-                    Toast.makeText(ModificaProfiloActivity.this, "Modifiche effettuate.", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(ModificaProfiloActivity.this, HomeLoggedActivity.class));
-                    finishAffinity();
-                }
-
-
-               /* CollectionReference strutturaRef = db.collection("Utenti");
-
-                // Create a query against the collection.
-                Query query = strutturaRef.whereEqualTo("username",username_form);
-                //After creating a query object, use the get() function to retrieve the results
-                Task<QuerySnapshot> task = query.get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {}
-                        });
-
-                //Waiting for async task to complete
-                while(!task.isComplete()){}
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d("07", document.getId() + " => " + document.getData());
-                        Utente utente =  document.toObject(Utente.class);
-                        risultati.add(utente);
-                    }
+                if (nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || username.isEmpty() ||
+                        domanda_segreta.isEmpty() || risposta.isEmpty()) {
+                    campi_alert.show();
                 } else {
-                    Log.d("07", "Error getting documents: ", task.getException());
-                }
-                if(risultati.size()==0){
-                    Query query2 = strutturaRef.whereEqualTo("username",utente.getUsername());
-                    //After creating a query object, use the get() function to retrieve the results
-                    Task<QuerySnapshot> task2 = query.get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {}
-                            });
-
-                    //Waiting for async task to complete
-                    while(!task2.isComplete()){}
-                    if (task2.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d("08", document.getId() + " => " + document.getData());
-                            WriteBatch batch = db.batch();
-                            DocumentReference docRef = db.collection("Utenti").document(document.getId());
-                            batch.update(docRef,"username",username_form);
-                            batch.update(docRef,"username",username_form);
+                    if (ValidateEmail(email)) {
+                        if (password.length()>=6) {
+                            int updateRet = DatiUtenteUpdate.DatiUtenteUpdate(utente, nome, cognome, username, email,
+                                    domanda_segreta, risposta, password, cPassword);
+                            if (updateRet == -1) {
+                                usernamePreso_alert.show();
+                            } else if (updateRet == -2) {
+                                emailPresa_alert.show();
+                            } else if (updateRet == -3) {
+                                passwordDiverse_alert.show();
+                            } else if (updateRet == -4) {
+                                noModifiche_alert.show();
+                            } else {
+                                Toast.makeText(ModificaProfiloActivity.this, "Modifiche effettuate.", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(ModificaProfiloActivity.this, HomeLoggedActivity.class));
+                                finishAffinity();
+                            }
+                        } else {
+                            passwordCorta_alert.show();
                         }
                     } else {
-                        Log.d("08", "Error getting documents: ", task.getException());
+                        emailFormat_alert.show();
                     }
                 }
-                else{
-                    usernamePreso_alert.show();
-                }*/
             }
         });
 
+    }
 
+    public static boolean ValidateEmail(String email) {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }

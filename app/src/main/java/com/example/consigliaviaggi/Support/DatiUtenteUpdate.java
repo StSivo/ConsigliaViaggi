@@ -57,7 +57,7 @@ public class DatiUtenteUpdate {
                 Log.d("07", "Error getting documents: ", task.getException());
             }
 
-            //If the new username is not already taken, then we check what fields the user changed
+            //If the new username is not already taken, we check what fields the user changed
             //and update the User document
             if (risultati.size() == 0) {
                 Query query2 = utenteRef.whereEqualTo("username", utente.getUsername());
