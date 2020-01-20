@@ -39,14 +39,15 @@ public class HomeLoggedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_logged);
 
-        Button logout_button = (Button)findViewById(R.id.logout_button);
-        Button ricerca_button=(Button)findViewById(R.id.ricerca_button);
-        CheckBox proximity_checkBox=(CheckBox)findViewById(R.id.proximity_checkBox);
-
         AlertDialog.Builder miaAlert2 = new AlertDialog.Builder(this);
         miaAlert2.setTitle("ATTENZIONE");
         miaAlert2.setMessage("La ricerca non ha prodotto risultati.");
         AlertDialog noresults_alert = miaAlert2.create();
+
+        Button modifica_profilo_button = findViewById(R.id.modifica_profilo_button);
+        Button logout_button = findViewById(R.id.logout_button);
+        Button ricerca_button = findViewById(R.id.ricerca_button);
+        CheckBox proximity_checkBox = findViewById(R.id.proximity_checkBox);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -119,6 +120,12 @@ public class HomeLoggedActivity extends AppCompatActivity {
                 mAuth.signOut();
                 Toast.makeText(HomeLoggedActivity.this, "Logout Effettuato.", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(HomeLoggedActivity.this, MainActivity.class));
+            }
+        });
+
+        modifica_profilo_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view){
+                startActivity(new Intent(HomeLoggedActivity.this, ModificaProfiloActivity.class));
             }
         });
 

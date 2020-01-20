@@ -12,11 +12,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/prompt_nome"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iscrizione_text"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/iscrizione_text" />
 
     <EditText
         android:id="@+id/cognome_form"
@@ -24,11 +25,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/prompt_cognome"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome_form"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/nome_form" />
 
     <EditText
         android:id="@+id/email_form"
@@ -36,12 +37,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/prompt_email"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cognome_form"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/cognome_form" />
 
     <EditText
         android:id="@+id/username_form"
@@ -49,12 +50,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/prompt_username"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_form"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/email_form" />
 
     <EditText
         android:id="@+id/password_form"
@@ -62,11 +63,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/prompt_password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_form"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/username_form" />
 
     <EditText
         android:id="@+id/cPassword_form"
@@ -74,37 +75,40 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/prompt_conferma_password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_form"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/password_form" />
 
     <EditText
         android:id="@+id/domanda_segreta_form"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
         android:ems="10"
         android:hint="@string/prompt_domanda_segreta"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cPassword_form"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/cPassword_form" />
 
     <EditText
         android:id="@+id/risposta_form"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/prompt_risposta"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/domanda_segreta_form"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/domanda_segreta_form" />
 
     <TextView
         android:id="@+id/iscrizione_text"
@@ -118,13 +122,83 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/modifica_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/signup"
+        android:layout_marginTop="25dp"
+        android:text="@string/modifica_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/risposta_form" />
+
+    <TextView
+        android:id="@+id/nome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:text="@string/prompt_nome"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/nome_form"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cognome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:text="@string/prompt_cognome"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/cognome_form"
+        app:layout_constraintTop_toBottomOf="@+id/nome_text" />
+
+    <TextView
+        android:id="@+id/email_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:text="@string/prompt_email"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/email_form"
+        app:layout_constraintTop_toBottomOf="@+id/cognome_text" />
+
+    <TextView
+        android:id="@+id/username_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:text="@string/prompt_username"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/username_form"
+        app:layout_constraintTop_toBottomOf="@+id/email_text" />
+
+    <TextView
+        android:id="@+id/domanda_segreta_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prompt_domanda_segreta"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/domanda_segreta_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/risposta_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prompt_risposta"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/risposta_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

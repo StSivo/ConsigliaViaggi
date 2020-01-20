@@ -7,7 +7,7 @@
     tools:context=".DomandaSegretaActivity">
 
     <TextView
-        android:id="@+id/domanda_segreta_text"
+        android:id="@+id/prompt_domanda_segreta_text"
         android:layout_width="338dp"
         android:layout_height="37dp"
         android:layout_marginTop="100dp"
@@ -18,14 +18,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/domanda_segreta_query"
+        android:id="@+id/domanda_segreta_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="TextView"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/domanda_segreta_text" />
+        app:layout_constraintTop_toBottomOf="@+id/prompt_domanda_segreta_text" />
 
     <EditText
         android:id="@+id/risposta_form"
@@ -37,7 +38,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/domanda_segreta_query" />
+        app:layout_constraintTop_toBottomOf="@+id/domanda_segreta_text"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/domanda_segreta_button"

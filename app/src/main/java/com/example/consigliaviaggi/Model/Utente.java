@@ -1,6 +1,9 @@
 package com.example.consigliaviaggi.Model;
 
-public class Utente {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Utente implements Parcelable {
 
     private String username;
     private String nome;
@@ -57,5 +60,41 @@ public class Utente {
 
     public void setRisposta(String risposta) {
         this.risposta = risposta;
+    }
+
+    protected Utente(Parcel in) {
+        username = in.readString();
+        nome = in.readString();
+        cognome = in.readString();
+        email = in.readString();
+        domanda_segreta = in.readString();
+        risposta = in.readString();
+    }
+
+    public static final Creator<Utente> CREATOR = new Creator<Utente>() {
+        @Override
+        public Utente createFromParcel(Parcel in) {
+            return new Utente(in);
+        }
+
+        @Override
+        public Utente[] newArray(int size) {
+            return new Utente[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(username);
+        dest.writeString(nome);
+        dest.writeString(cognome);
+        dest.writeString(email);
+        dest.writeString(domanda_segreta);
+        dest.writeString(risposta);
     }
 }

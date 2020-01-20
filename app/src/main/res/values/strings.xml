@@ -70,6 +70,7 @@
     <string name="prompt_recensione_text">Inserisci i dati nei campi seguenti per richiedere un\'aggiunta di una nuova recensione alla struttura.</string>
     <string name="voto_recensione_text">Voto:</string>
     <string name="switch_recensione_text">Pubblica con nome e cognome</string>
+    <string name="modifica_button">Modifica</string>
     <string-array name="voto_recensione">
         <item>1</item>
         <item>2</item>

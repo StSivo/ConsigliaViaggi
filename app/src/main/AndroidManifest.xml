@@ -70,10 +70,6 @@
             android:label="Recupero Password"
             android:parentActivityName=".PasswordDimenticataActivity" />
         <activity
-            android:name=".ModificaPasswordActivity"
-            android:label="Recupero Password"
-            android:parentActivityName=".DomandaSegretaActivity" />
-        <activity
             android:name=".RicercaStrutturaActivity"
             android:label="Risultati Ricerca"
             android:parentActivityName=".MainActivity" />
@@ -93,7 +89,7 @@
         <activity
             android:name=".ModificaProfiloActivity"
             android:label="Modifica Profilo"
-            android:parentActivityName=".ModificaPasswordActivity"></activity>
+            android:parentActivityName=".ModificaProfiloActivity"></activity>
     </application>
 
 </manifest>
