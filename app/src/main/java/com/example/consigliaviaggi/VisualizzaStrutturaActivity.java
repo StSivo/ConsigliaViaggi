@@ -19,6 +19,8 @@ import com.example.consigliaviaggi.Model.Recensione;
 import com.example.consigliaviaggi.Model.Struttura;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -42,17 +44,17 @@ public class VisualizzaStrutturaActivity extends AppCompatActivity {
         List<String> risultati_ricerca = new ArrayList<>();
         List<Recensione> risultati_no_order = new ArrayList<Recensione>();
 
-        Button aggiungi_recensione_button = (Button)findViewById(R.id.aggiungi_recensione_button);
-        TextView nome_struttura_text = (TextView)findViewById(R.id.nome_struttura_text);
-        TextView citta_struttura_text = (TextView)findViewById(R.id.citta_struttura_text);
-        TextView fascia_prezzo_struttura_text = (TextView)findViewById(R.id.fascia_prezzo_struttura_text);
-        TextView indirizzo_struttura_text = (TextView)findViewById(R.id.indirizzo_struttura_text);
-        TextView valutazione_media_struttura_text = (TextView)findViewById(R.id.valutazione_media_struttura_text);
-        TextView descrizione_struttura_text = (TextView)findViewById(R.id.descrizione_struttura_text);
-        TextView filtro_text = (TextView)findViewById(R.id.filtro_text);
+        Button aggiungi_recensione_button = findViewById(R.id.aggiungi_recensione_button);
+        TextView nome_struttura_text = findViewById(R.id.nome_struttura_text);
+        TextView citta_struttura_text = findViewById(R.id.citta_struttura_text);
+        TextView fascia_prezzo_struttura_text = findViewById(R.id.fascia_prezzo_struttura_text);
+        TextView indirizzo_struttura_text = findViewById(R.id.indirizzo_struttura_text);
+        TextView valutazione_media_struttura_text = findViewById(R.id.valutazione_media_struttura_text);
+        TextView descrizione_struttura_text = findViewById(R.id.descrizione_struttura_text);
+        TextView filtro_text = findViewById(R.id.filtro_text);
         descrizione_struttura_text.setMovementMethod(new ScrollingMovementMethod());
-        ListView visualizza_recensioni_view = (ListView)findViewById(R.id.visualizza_recensioni_view);
-        Spinner seleziona_filtro_spinner = (Spinner)findViewById(R.id.seleziona_filtro_spinner);
+        ListView visualizza_recensioni_view = findViewById(R.id.visualizza_recensioni_view);
+        Spinner seleziona_filtro_spinner = findViewById(R.id.seleziona_filtro_spinner);
 
         Struttura struttura_selezionata = getIntent().getParcelableExtra("struttura_selezionata");
 
@@ -71,8 +73,16 @@ public class VisualizzaStrutturaActivity extends AppCompatActivity {
         fascia_prezzo_struttura_text.setText("€"+struttura_selezionata.getPrezzo_min()+" - €"+struttura_selezionata.getPrezzo_max());
         indirizzo_struttura_text.setText(struttura_selezionata.getIndirizzo());
         descrizione_struttura_text.setText(struttura_selezionata.getDescrizione());
+
+        //Picking the first decimal place of valutazioe_media after rounding off the value
+        DecimalFormat df = new DecimalFormat("#.#");
+        df.setRoundingMode(RoundingMode.FLOOR);
+        String num = df.format(struttura_selezionata.getValutazione_media());
+
+        //If there are reviews we show the average rating.
+        //If there are any, we show another string instead (Nessuna Valutazione)
         if(struttura_selezionata.getValutazione_media()!=0){
-            valutazione_media_struttura_text.setText(String.valueOf("Valutazione Media: "+struttura_selezionata.getValutazione_media()));
+            valutazione_media_struttura_text.setText(String.valueOf("Valutazione Media: "+num));
         }
         else{
             valutazione_media_struttura_text.setText("Nessuna Valutazione");

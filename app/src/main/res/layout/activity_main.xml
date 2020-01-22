@@ -15,7 +15,9 @@
         android:layout_marginBottom="28dp"
         android:text="@string/login"
         app:layout_constraintBottom_toTopOf="@+id/tipo_struttura_text"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tipo_struttura_text"

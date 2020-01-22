@@ -24,6 +24,7 @@ import com.example.consigliaviaggi.Support.RicercaStruttureQuery;
 import com.example.consigliaviaggi.Model.Struttura;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static int SPLASH_TIME_OUT = 4000;
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private FirebaseAuth mAuth;
 
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser()!=null){
             mAuth.signOut();
