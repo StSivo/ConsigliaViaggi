@@ -37,7 +37,6 @@ public class DomandaSegretaActivity extends AppCompatActivity {
 
         Utente utente = getIntent().getParcelableExtra("utente");
         domanda_segreta_text.setText(utente.getDomanda_segreta());
-        System.out.println(utente.getEmail());
 
         domanda_segreta_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){

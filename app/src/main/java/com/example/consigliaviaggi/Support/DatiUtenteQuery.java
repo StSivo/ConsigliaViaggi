@@ -39,11 +39,12 @@ public class DatiUtenteQuery {
             for (QueryDocumentSnapshot document : task.getResult()) {
                 Log.d("07", document.getId() + " => " + document.getData());
                 utente =  document.toObject(Utente.class);
+                return utente;
             }
         } else {
             Log.d("07", "Error getting documents: ", task.getException());
         }
 
-        return utente;
+        return null;
     }
 }

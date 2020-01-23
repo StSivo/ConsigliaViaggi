@@ -119,7 +119,7 @@ public class ModificaProfiloActivity extends AppCompatActivity {
                     campi_alert.show();
                 } else {
                     if (ValidateEmail(email)) {
-                        if (password.length()>=6) {
+                        if (password.length()>=6 || password.isEmpty()) {
                             int updateRet = DatiUtenteUpdate.DatiUtenteUpdate(utente, nome, cognome, username, email,
                                     domanda_segreta, risposta, password, cPassword);
                             if (updateRet == -1) {

@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -34,7 +35,6 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 4000;
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private FirebaseAuth mAuth;
 
@@ -61,17 +61,23 @@ public class MainActivity extends AppCompatActivity {
         ricerca_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
 
-                Spinner tipo_struttura_spinner=(Spinner)findViewById(R.id.tipo_struttura_spinner);
-                TextInputLayout nome_struttura_form=(TextInputLayout) findViewById(R.id.nome_struttura_form);
-                TextInputLayout citta_form=(TextInputLayout) findViewById(R.id.citta_form);
-                EditText prezzo_min_form=(EditText) findViewById(R.id.prezzo_min);
-                EditText prezzo_max_form=(EditText) findViewById(R.id.prezzo_max);
+                Spinner tipo_struttura_spinner = findViewById(R.id.tipo_struttura_spinner);
+                TextInputLayout nome_struttura_form = findViewById(R.id.nome_struttura_form);
+                TextInputLayout citta_form = findViewById(R.id.citta_form);
+                EditText prezzo_min_form = findViewById(R.id.prezzo_min);
+                EditText prezzo_max_form = findViewById(R.id.prezzo_max);
 
                 int prezzo_min;
                 int prezzo_max;
                 String nome_struttura;
                 String citta;
                 String tipo_struttura;
+
+                LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+                if (proximity_checkBox.isChecked() && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                    proximity_checkBox.setChecked(false);
+                }
 
                 if(prezzo_min_form.getText().toString().isEmpty()){
                     prezzo_min=0;
@@ -128,6 +134,15 @@ public class MainActivity extends AppCompatActivity {
                     requestLocationPermission();
                     if(ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.ACCESS_FINE_LOCATION)==-1){
                         proximity_checkBox.setChecked(false);
+                    }
+                    else{
+                        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+                        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                            Toast.makeText(MainActivity.this, "GPS non attivo sul dispositivo", Toast.LENGTH_SHORT).show();
+                            proximity_checkBox.setChecked(false);
+                        }
+
                     }
                 }
             }

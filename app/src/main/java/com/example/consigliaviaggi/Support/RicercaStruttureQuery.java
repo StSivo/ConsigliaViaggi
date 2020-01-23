@@ -24,10 +24,6 @@ public class RicercaStruttureQuery {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<Struttura> risultati = new ArrayList<>();
-        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setTimestampsInSnapshotsEnabled(true)
-                .build();
-        db.setFirestoreSettings(settings);
 
         // Create a reference to the Strutture collection
         CollectionReference struttureRef = db.collection("Strutture");

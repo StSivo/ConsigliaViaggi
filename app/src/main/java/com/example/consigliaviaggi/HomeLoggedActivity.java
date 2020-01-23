@@ -2,6 +2,7 @@ package com.example.consigliaviaggi;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -67,6 +68,12 @@ public class HomeLoggedActivity extends AppCompatActivity {
                 String citta;
                 String tipo_struttura;
 
+                LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+                if (proximity_checkBox.isChecked() && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                    proximity_checkBox.setChecked(false);
+                }
+
                 if(prezzo_min_form.getText().toString().isEmpty()){
                     prezzo_min=0;
                 }
@@ -115,11 +122,33 @@ public class HomeLoggedActivity extends AppCompatActivity {
             }
         });
 
+        proximity_checkBox.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if(proximity_checkBox.isChecked()){
+                    requestLocationPermission();
+                    if(ContextCompat.checkSelfPermission(HomeLoggedActivity.this,Manifest.permission.ACCESS_FINE_LOCATION)==-1){
+                        proximity_checkBox.setChecked(false);
+                    }
+                    else{
+                        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+                        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                            Toast.makeText(HomeLoggedActivity.this, "GPS non attivo sul dispositivo", Toast.LENGTH_SHORT).show();
+                            proximity_checkBox.setChecked(false);
+                        }
+
+                    }
+                }
+            }
+        });
+
         logout_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 mAuth.signOut();
                 Toast.makeText(HomeLoggedActivity.this, "Logout Effettuato.", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(HomeLoggedActivity.this, MainActivity.class));
+                finishAffinity();
             }
         });
 

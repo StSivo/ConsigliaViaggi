@@ -3,6 +3,7 @@ package com.example.consigliaviaggi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.consigliaviaggi.Model.Struttura;
 import com.example.consigliaviaggi.Model.Utente;
@@ -34,11 +36,11 @@ public class AggiungiRecensioneActivity extends AppCompatActivity {
         miaAlert.setMessage("Hai gia aggiunto o richiesto l'aggiunta di una recensione");
         AlertDialog giaRecensito_alert = miaAlert.create();
 
-        Button invia_recensione_button = (Button)findViewById(R.id.invia_recensione_button);
-        Spinner voto_recensione_spinner = (Spinner)findViewById(R.id.voto_recensione_spinner);
-        EditText titolo_recensione_form = (EditText)findViewById(R.id.titolo_recensione_form);
-        EditText commento_recensione_form = (EditText)findViewById(R.id.commento_recensione_form);
-        Switch dati_switch = (Switch)findViewById(R.id.dati_switch);
+        Button invia_recensione_button = findViewById(R.id.invia_recensione_button);
+        Spinner voto_recensione_spinner = findViewById(R.id.voto_recensione_spinner);
+        EditText titolo_recensione_form = findViewById(R.id.titolo_recensione_form);
+        EditText commento_recensione_form = findViewById(R.id.commento_recensione_form);
+        Switch dati_switch = findViewById(R.id.dati_switch);
 
         Utente utente = DatiUtenteQuery.RicercaDatiUtente(mAuth.getCurrentUser().getEmail());
 
@@ -66,6 +68,8 @@ public class AggiungiRecensioneActivity extends AppCompatActivity {
                 if(CheckRecensioniUtente.CheckRecensioni(utente.getUsername(),struttura.getIndirizzo())) {
                     AggiungiRecensione.AggiungiRecensioneUp(titolo_recensione, voto_recensione,
                             commento_recensione, struttura, utente, dati_switch.isChecked());
+                    Toast.makeText(AggiungiRecensioneActivity.this,"Recensione inviata con successo.", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
                 else{
                     giaRecensito_alert.show();
