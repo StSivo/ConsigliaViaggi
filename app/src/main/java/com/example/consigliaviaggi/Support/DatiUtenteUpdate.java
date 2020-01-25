@@ -157,11 +157,48 @@ public class DatiUtenteUpdate {
                         });
                         while (task3.isComplete()) {
                         }
-                        if (task3.isSuccessful()) {
-                            return 0;
+                        //Retrive user's reviews to update "username" and/or "autore" fields to all of them
+                        WriteBatch batch2 = db.batch();
+                        CollectionReference recensioniRef = db.collection("Recensioni");
+                        Query query5 = recensioniRef.whereEqualTo("username", utente.getUsername());
+                        //After creating a query object, use the get() function to retrieve the results
+                        Task<QuerySnapshot> task5 = query5.get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    }
+                                });
+
+                        //Waiting for async task to complete
+                        while (!task5.isComplete()) {
+                        }
+                        if (task5.isSuccessful()) {
+                            for (QueryDocumentSnapshot document3 : task5.getResult()) {
+                                Log.d("16", document3.getId() + " => " + document.getData());
+                                Recensione review = document3.toObject(Recensione.class);
+                                batch2.update(db.collection("Recensioni").document(document3.getId()),"username",username);
+                                //Update "username" field and "autore" field if updates were made to name and/or surname and/or username
+                                if (review.getAutore().equals(utente.getUsername())) {
+                                    batch2.update(db.collection("Recensioni").document(document3.getId()),"autore",username);
+                                } else {
+                                    if ((!utente.getNome().equals(nome)) || (!utente.getCognome().equals(cognome))) {
+                                        batch2.update(db.collection("Recensioni").document(document3.getId()),"autore",nome+" "+cognome);
+                                    }
+                                }
+                            }
+                            Task task6 = batch2.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                }
+                            });
+                            while (task6.isComplete()) {
+                            }
+                            if (task6.isSuccessful()) {
+                                return 0;
+                            }
                         } else {
-                            Log.d("09", "Error getting documents: ", task.getException());
-                        }///////////////////////////
+                            Log.d("16", "Error getting documents: ", task5.getException());
+                        }
                     }
                 } else {
                     Log.d("08", "Error getting documents: ", task.getException());
@@ -281,6 +318,47 @@ public class DatiUtenteUpdate {
                         } else {
                             Log.d("13", "Error");
                         }
+                        //Retrive user's reviews to update "autore" fields to all of them (if needed)
+                        WriteBatch batch2 = db.batch();
+                        CollectionReference recensioniRef = db.collection("Recensioni");
+                        Query query5 = recensioniRef.whereEqualTo("username", utente.getUsername());
+                        //After creating a query object, use the get() function to retrieve the results
+                        Task<QuerySnapshot> task5 = query5.get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    }
+                                });
+
+                        //Waiting for async task to complete
+                        while (!task5.isComplete()) {
+                        }
+                        if (task5.isSuccessful()) {
+                            for (QueryDocumentSnapshot document3 : task5.getResult()) {
+                                Log.d("16", document3.getId() + " => " + document.getData());
+                                Recensione review = document3.toObject(Recensione.class);
+                                //Update "autore" field if updates were made to name and/or surname
+                                if (!review.getAutore().equals(utente.getUsername())) {
+                                    if ((!utente.getNome().equals(nome)) || (!utente.getCognome().equals(cognome))) {
+                                        batch2.update(db.collection("Recensioni").document(document3.getId()),"autore",nome+" "+cognome);
+                                        Task task6 = batch2.commit().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                            }
+                                        });
+                                        while (task6.isComplete()) {
+                                        }
+                                        if (task6.isSuccessful()) {
+                                            return 0;
+                                        }
+                                    }
+                                }
+                            }
+
+                        } else {
+                            Log.d("16", "Error getting documents: ", task5.getException());
+                        }
+
                     }
                     else{
                         if (!password_flag) {
