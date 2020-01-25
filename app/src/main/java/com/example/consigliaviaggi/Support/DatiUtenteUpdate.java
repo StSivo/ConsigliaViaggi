@@ -4,6 +4,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import com.example.consigliaviaggi.Model.Recensione;
 import com.example.consigliaviaggi.Model.Utente;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -159,7 +161,7 @@ public class DatiUtenteUpdate {
                             return 0;
                         } else {
                             Log.d("09", "Error getting documents: ", task.getException());
-                        }
+                        }///////////////////////////
                     }
                 } else {
                     Log.d("08", "Error getting documents: ", task.getException());

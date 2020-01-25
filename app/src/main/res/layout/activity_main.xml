@@ -137,4 +137,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/proximity_checkBox" />
 
+    <TextView
+        android:id="@+id/nome_struttura_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prompt_nome_struttura_text"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome_struttura_form" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

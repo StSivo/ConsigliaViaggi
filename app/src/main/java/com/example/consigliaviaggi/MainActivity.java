@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
             mAuth.signOut();
         }
 
-        Button ricerca_button=(Button)findViewById(R.id.ricerca_button);
-        Button login_button=(Button)findViewById(R.id.login_button);
-        CheckBox proximity_checkBox=(CheckBox)findViewById(R.id.proximity_checkBox);
+        Button ricerca_button = findViewById(R.id.ricerca_button);
+        Button login_button = findViewById(R.id.login_button);
+        CheckBox proximity_checkBox = findViewById(R.id.proximity_checkBox);
 
         AlertDialog.Builder miaAlert = new AlertDialog.Builder(this);
         miaAlert.setTitle("ATTENZIONE");
@@ -75,10 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
                 LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-                if (proximity_checkBox.isChecked() && !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-                    proximity_checkBox.setChecked(false);
-                }
-
                 if(prezzo_min_form.getText().toString().isEmpty()){
                     prezzo_min=0;
                 }
@@ -101,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //Filter results by proximity.
                 //We don't need to check the permissions as we have already checked the box.
-                if(proximity_checkBox.isChecked() && !risultati.isEmpty()){
+                if(proximity_checkBox.isChecked() && !risultati.isEmpty() && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
                     Location user = getLocation();
                     double lat = user.getLatitude();
                     double lon = user.getLongitude();
@@ -180,8 +176,8 @@ public class MainActivity extends AppCompatActivity {
                 return lastKnownLocationGPS;
             } else {
                 @SuppressLint("MissingPermission") Location loc =  locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
-                System.out.println("1::"+loc);
-                System.out.println("2::"+loc.getLatitude());
+                //System.out.println("1::"+loc);
+                //System.out.println("2::"+loc.getLatitude());
                 return loc;
             }
         } else {

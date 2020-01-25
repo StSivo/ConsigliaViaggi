@@ -53,17 +53,13 @@ public class RicercaStruttureQuery {
             for (QueryDocumentSnapshot document : task.getResult()) {
                 Log.d("01", document.getId() + " => " + document.getData());
                 Struttura struttura =  document.toObject(Struttura.class);
-                risultati.add(struttura);
+                //Apply price range filters
+                if(!(struttura.getPrezzo_min()<prezzo_min || struttura.getPrezzo_max()>prezzo_max)) {
+                    risultati.add(struttura);
+                }
             }
         } else {
             Log.d("01", "Error getting documents: ", task.getException());
-        }
-
-        //Apply price range filters
-        for(int i=0; i<risultati.size(); i++) {
-            if((risultati.get(i).getPrezzo_min()<prezzo_min)|(risultati.get(i).getPrezzo_max()>prezzo_max)) {
-                risultati.remove(i);
-            }
         }
 
         return risultati;

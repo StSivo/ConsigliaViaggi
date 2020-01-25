@@ -72,6 +72,7 @@
     <string name="switch_recensione_text">Pubblica con nome e cognome</string>
     <string name="modifica_button">Modifica</string>
     <string name="prompt_modifica_dati_text">I campi sono riempiti con i tuoi dati correnti, modificali per cambiare i tuoi dati.</string>
+    <string name="prompt_nome_struttura_text"><![CDATA[<<Inserire il nome completo (Case Sensitive)>>]]></string>
     <string-array name="voto_recensione">
         <item>1</item>
         <item>2</item>

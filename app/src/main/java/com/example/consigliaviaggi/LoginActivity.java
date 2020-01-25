@@ -41,11 +41,11 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        Button signup_button = (Button)findViewById(R.id.signup_button);
-        Button login_button = (Button)findViewById(R.id.login_button);
-        Button password_dimenticata_button = (Button)findViewById(R.id.password_dimenticata_button);
-        EditText email_form = (EditText)findViewById(R.id.email_form);
-        EditText password_form = (EditText) findViewById(R.id.password_form);
+        Button signup_button = findViewById(R.id.signup_button);
+        Button login_button = findViewById(R.id.login_button);
+        Button password_dimenticata_button = findViewById(R.id.password_dimenticata_button);
+        EditText email_form = findViewById(R.id.email_form);
+        EditText password_form = findViewById(R.id.password_form);
 
 
         login_button.setOnClickListener(new View.OnClickListener() {
