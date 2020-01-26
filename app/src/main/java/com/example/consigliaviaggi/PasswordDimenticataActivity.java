@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -53,12 +54,15 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
                     if (ValidateEmail(email)) {
                         wait_alert.show();
 
+                        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         int SPLASH_TIME_OUT = 1;
                         new Handler().postDelayed(new Runnable() {
 
                             @Override
                             public void run() {
                                 Utente utente = DatiUtenteQuery.RicercaDatiUtente(email);
+                                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                                 wait_alert.dismiss();
                                 if (utente != null) {
                                     startActivity(new Intent(PasswordDimenticataActivity.this, DomandaSegretaActivity.class)

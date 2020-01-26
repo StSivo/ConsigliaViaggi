@@ -31,6 +31,7 @@ import com.google.firebase.firestore.WriteBatch;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class ModificaProfiloActivity extends AppCompatActivity {
 
@@ -79,6 +80,12 @@ public class ModificaProfiloActivity extends AppCompatActivity {
         miaAlert7.setMessage("La password deve essere di almeno 6 caratteri");
         AlertDialog passwordCorta_alert = miaAlert7.create();
 
+        AlertDialog.Builder miaAlert8 = new AlertDialog.Builder(this);
+        miaAlert8.setTitle("ATTENZIONE");
+        miaAlert8.setMessage("Campo non valido:\n\nLa stringa contiene uno/più spazi all'inizio\n" +
+                "La stringa contiene uno/più spazi tra due parole\nLa stringa contiene uno/più spazi alla fine");
+        AlertDialog stringheNonValide_alert = miaAlert8.create();
+
         Button modifica_button = findViewById(R.id.modifica_button);
         EditText nome_form = findViewById(R.id.nome_form);
         EditText cognome_form = findViewById(R.id.cognome_form);
@@ -114,33 +121,66 @@ public class ModificaProfiloActivity extends AppCompatActivity {
                         domanda_segreta.isEmpty() || risposta.isEmpty()) {
                     campi_alert.show();
                 } else {
-                    if (ValidateEmail(email)) {
-                        if (password.length()>=6 || password.isEmpty()) {
-                            int updateRet = DatiUtenteUpdate.DatiUtenteUpdate(utente, nome, cognome, username, email,
-                                    domanda_segreta, risposta, password, cPassword);
-                            if (updateRet == -1) {
-                                usernamePreso_alert.show();
-                            } else if (updateRet == -2) {
-                                emailPresa_alert.show();
-                            } else if (updateRet == -3) {
-                                passwordDiverse_alert.show();
-                            } else if (updateRet == -4) {
-                                noModifiche_alert.show();
+                    if(IsInvalidText(nome) || IsInvalidText(cognome) || IsInvalidUsername(username)
+                        || IsInvalidText(risposta) || IsInvalidText(domanda_segreta)){
+                        stringheNonValide_alert.show();
+                    } else {
+                        if (ValidateEmail(email)) {
+                            if (password.length() >= 6 || password.isEmpty()) {
+                                int updateRet = DatiUtenteUpdate.DatiUtenteUpdate(utente, nome, cognome, username, email,
+                                        domanda_segreta, risposta, password, cPassword);
+                                if (updateRet == -1) {
+                                    usernamePreso_alert.show();
+                                } else if (updateRet == -2) {
+                                    emailPresa_alert.show();
+                                } else if (updateRet == -3) {
+                                    passwordDiverse_alert.show();
+                                } else if (updateRet == -4) {
+                                    noModifiche_alert.show();
+                                } else {
+                                    Toast.makeText(ModificaProfiloActivity.this, "Modifiche effettuate.", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(ModificaProfiloActivity.this, HomeLoggedActivity.class));
+                                    finishAffinity();
+                                }
                             } else {
-                                Toast.makeText(ModificaProfiloActivity.this, "Modifiche effettuate.", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(ModificaProfiloActivity.this, HomeLoggedActivity.class));
-                                finishAffinity();
+                                passwordCorta_alert.show();
                             }
                         } else {
-                            passwordCorta_alert.show();
+                            emailFormat_alert.show();
                         }
-                    } else {
-                        emailFormat_alert.show();
                     }
                 }
             }
         });
 
+    }
+
+    public static boolean IsInvalidUsername(String username){
+        String textRegex = "^\\s.*";
+        String textRegex2= ".*\\s.*";
+        String textRegex3= ".*\\s$";
+        Pattern pat = Pattern.compile(textRegex);
+        Pattern pat2 = Pattern.compile(textRegex2);
+        Pattern pat3 = Pattern.compile(textRegex3);
+        if (username.isEmpty()){
+            return false;
+        }
+
+        return pat.matcher(username).matches() || pat2.matcher(username).matches() || pat3.matcher(username).matches();
+    }
+
+    public static boolean IsInvalidText(String text){
+        String textRegex = "^\\s.*";
+        String textRegex2= ".*\\s\\s.*";
+        String textRegex3= ".*\\s$";
+        Pattern pat = Pattern.compile(textRegex);
+        Pattern pat2 = Pattern.compile(textRegex2);
+        Pattern pat3 = Pattern.compile(textRegex3);
+        if (text.isEmpty()){
+            return false;
+        }
+
+        return pat.matcher(text).matches() || pat2.matcher(text).matches() || pat3.matcher(text).matches();
     }
 
     public static boolean ValidateEmail(String email) {

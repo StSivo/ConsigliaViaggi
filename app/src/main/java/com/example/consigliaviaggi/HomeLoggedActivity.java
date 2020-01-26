@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -63,6 +64,8 @@ public class HomeLoggedActivity extends AppCompatActivity {
             public void onClick(View view){
 
                 wait_alert.show();
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 int SPLASH_TIME_OUT = 1;
                 new Handler().postDelayed(new Runnable() {
 
@@ -122,6 +125,7 @@ public class HomeLoggedActivity extends AppCompatActivity {
                             }
                         }
 
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         wait_alert.dismiss();
 
                         //Alert for no results search
