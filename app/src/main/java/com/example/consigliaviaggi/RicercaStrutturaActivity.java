@@ -27,8 +27,8 @@ public class RicercaStrutturaActivity extends AppCompatActivity {
         //Retrive data from previous activity
         List<Struttura> risultati = getIntent().getParcelableArrayListExtra("risultati");
 
-        ListView risultati_ricerca_view = (ListView) findViewById(R.id.risultati_ricerca_view);
-        Button visualizza_map_button=(Button)findViewById(R.id.visualizza_map_button);
+        ListView risultati_ricerca_view = findViewById(R.id.risultati_ricerca_view);
+        Button visualizza_map_button = findViewById(R.id.visualizza_map_button);
 
         //Prepare results
         for(int i=0; i<risultati.size();i++){

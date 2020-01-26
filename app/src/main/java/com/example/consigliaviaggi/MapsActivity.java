@@ -1,20 +1,14 @@
 package com.example.consigliaviaggi;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.webkit.GeolocationPermissions;
 
 import com.example.consigliaviaggi.Model.Struttura;
 import com.google.android.gms.maps.CameraUpdateFactory;

@@ -26,7 +26,7 @@ public class VisualizzaRecensioneActivity extends AppCompatActivity {
         Recensione recensione_selezionata = getIntent().getParcelableExtra("recensione_selezionata");
 
         titolo_recensione_text.setText(recensione_selezionata.getTitolo());
-        autore_recensione_text.setText("Autore: "+recensione_selezionata.getAutore());
+        autore_recensione_text.setText("Pubblicata da: "+recensione_selezionata.getAutore());
         commento_recensione_text.setText(recensione_selezionata.getCommento());
         voto_recensione_text.setNumStars(5);
         voto_recensione_text.setRating(recensione_selezionata.getVoto());

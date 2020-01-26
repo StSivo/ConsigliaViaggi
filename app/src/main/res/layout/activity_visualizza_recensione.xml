@@ -42,8 +42,8 @@
 
     <TextView
         android:id="@+id/commento_recensione_form"
-        android:layout_width="409dp"
-        android:layout_height="300dp"
+        android:layout_width="390dp"
+        android:layout_height="301dp"
         android:layout_marginTop="40dp"
         android:scrollbars="vertical"
         android:textSize="18sp"

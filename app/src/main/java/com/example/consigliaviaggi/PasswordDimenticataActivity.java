@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -37,26 +38,41 @@ public class PasswordDimenticataActivity extends AppCompatActivity {
         miaAlert3.setMessage("E-mail non trovata.");
         AlertDialog nonTrovato_alert = miaAlert3.create();
 
-        Button invia_button=(Button)findViewById(R.id.email_password_dimenticata_button);
-        EditText email_form = (EditText) findViewById(R.id.email_form);
+        AlertDialog.Builder miaAlert4 = new AlertDialog.Builder(this);
+        miaAlert4.setTitle("ATTENDERE");
+        miaAlert4.setMessage("Recupero domanda segreta in corso...");
+        AlertDialog wait_alert = miaAlert4.create();
+
+        Button invia_button = findViewById(R.id.email_password_dimenticata_button);
+        EditText email_form = findViewById(R.id.email_form);
 
         invia_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view){
                 String email = email_form.getText().toString();
-                if(ValidateEmail(email)) {
-                    if (!email.isEmpty()) {
-                        Utente utente = DatiUtenteQuery.RicercaDatiUtente(email);
-                        if (utente!=null) {
-                            startActivity(new Intent(PasswordDimenticataActivity.this, DomandaSegretaActivity.class)
-                                    .putExtra("utente", utente));
-                        } else {
-                            nonTrovato_alert.show();
-                        }
+                if(!email.isEmpty()) {
+                    if (ValidateEmail(email)) {
+                        wait_alert.show();
+
+                        int SPLASH_TIME_OUT = 1;
+                        new Handler().postDelayed(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Utente utente = DatiUtenteQuery.RicercaDatiUtente(email);
+                                wait_alert.dismiss();
+                                if (utente != null) {
+                                    startActivity(new Intent(PasswordDimenticataActivity.this, DomandaSegretaActivity.class)
+                                            .putExtra("utente", utente));
+                                } else {
+                                    nonTrovato_alert.show();
+                                }
+                            }
+                        },SPLASH_TIME_OUT);
                     } else {
-                        campoVuoto_alert.show();
+                        emailFormat_alert.show();
                     }
                 } else {
-                    emailFormat_alert.show();
+                    campoVuoto_alert.show();
                 }
 
             }

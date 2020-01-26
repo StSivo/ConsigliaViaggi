@@ -6,17 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.example.consigliaviaggi.Model.Struttura;
 import com.example.consigliaviaggi.Model.Utente;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firestore.v1beta1.WriteResult;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,31 +53,5 @@ public class AggiungiRecensione {
                         Log.w("05", "Error adding document", e);
                     }
                 });
-
-        /*float nuova_vm = (struttura.getValutazione_media()+voto_recensione)/2;
-
-        CollectionReference strutturaRef = db.collection("Strutture");
-
-        // Create a query against the collection.
-        Query query = strutturaRef.whereEqualTo("indirizzo",struttura.getIndirizzo());
-        //After creating a query object, use the get() function to retrieve the results
-        Task<QuerySnapshot> task = query.get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {}
-                });
-
-        //Waiting for async task to complete
-        while(!task.isComplete()){}
-        if (task.isSuccessful()) {
-            for (QueryDocumentSnapshot document : task.getResult()) {
-                Log.d("07", document.getId() + " => " + document.getData());
-                db.collection("Strutture").document(document.getId()).update("valutazione_media",nuova_vm);
-            }
-        } else {
-            Log.d("07", "Error getting documents: ", task.getException());
-        }*/
-
-
     }
 }

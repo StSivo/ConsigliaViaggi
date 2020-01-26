@@ -40,10 +40,6 @@ public class ModificaProfiloActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modifica_profilo);
 
-        List<Utente> risultati = new ArrayList<>();
-
-        //Initialize Firestore
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         // Initialize Firebase Auth
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 

@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.consigliaviaggi.LoginActivity;
 import com.example.consigliaviaggi.Model.Utente;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,8 +30,8 @@ public class DomandaSegretaActivity extends AppCompatActivity {
         miaAlert.setMessage("Risposta errata, riprovare.");
         AlertDialog errata_alert = miaAlert.create();
 
-        Button domanda_segreta_button=findViewById(R.id.domanda_segreta_button);
-        TextView domanda_segreta_text=findViewById(R.id.domanda_segreta_text);
+        Button domanda_segreta_button = findViewById(R.id.domanda_segreta_button);
+        TextView domanda_segreta_text = findViewById(R.id.domanda_segreta_text);
         EditText risposta_form = findViewById(R.id.risposta_form);
 
         Utente utente = getIntent().getParcelableExtra("utente");
