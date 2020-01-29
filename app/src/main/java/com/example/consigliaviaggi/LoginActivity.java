@@ -19,6 +19,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private PasswordDimenticataActivity passwordDimenticataActivity;
+    private SignupActivity signupActivity;
+    private HomeLoggedActivity homeLoggedActivity;
+
     private FirebaseAuth mAuth;
 
     @Override

@@ -35,6 +35,8 @@ import java.util.regex.Pattern;
 
 public class ModificaProfiloActivity extends AppCompatActivity {
 
+    private DatiUtenteUpdate datiUtenteUpdate;
+    private DatiUtenteQuery datiUtenteQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -18,6 +18,9 @@ import java.util.List;
 
 public class RicercaStrutturaActivity extends AppCompatActivity {
 
+    private MapsActivity mapsActivity;
+    private VisualizzaStrutturaActivity visualizzaStrutturaActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

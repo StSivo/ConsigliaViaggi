@@ -34,6 +34,10 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class HomeLoggedActivity extends AppCompatActivity {
 
+    private RicercaStrutturaActivity ricercaStrutturaActivity;
+    private ModificaProfiloActivity modificaProfiloActivity;
+    private RicercaStruttureQuery ricercaStruttureQuery;
+
     private final int REQUEST_LOCATION_PERMISSION = 1;
     private FirebaseAuth mAuth;
 

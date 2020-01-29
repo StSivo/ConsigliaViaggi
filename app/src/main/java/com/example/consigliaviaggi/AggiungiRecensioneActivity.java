@@ -23,6 +23,10 @@ import java.util.regex.Pattern;
 
 public class AggiungiRecensioneActivity extends AppCompatActivity {
 
+    private DatiUtenteQuery datiUtenteQuery;
+    private CheckRecensioniUtente checkRecensioniUtente;
+    private AggiungiRecensione aggiungiRecensione;
+
     private FirebaseAuth mAuth;
 
     @Override

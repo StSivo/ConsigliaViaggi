@@ -19,6 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class PasswordDimenticataActivity extends AppCompatActivity {
 
+    private DomandaSegretaActivity domandaSegretaActivity;
+    private DatiUtenteQuery datiUtenteQuery;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

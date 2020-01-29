@@ -28,6 +28,9 @@ import java.util.List;
 public class VisualizzaStrutturaActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private VisualizzaRecensioneActivity visualizzaRecensioneActivity;
+    private AggiungiRecensioneActivity aggiungiRecensioneActivity;
+    private RecensioniStrutturaQuery recensioniStrutturaQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,6 +15,8 @@ import com.example.consigliaviaggi.Support.SignupUtente;
 
 public class SignupActivity extends AppCompatActivity {
 
+    private SignupUtente signupUtente;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
