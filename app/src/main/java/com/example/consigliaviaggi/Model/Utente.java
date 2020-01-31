@@ -14,6 +14,15 @@ public class Utente implements Parcelable {
 
     public Utente() {}
 
+    public Utente(String username,String nome,String cognome,String email,String domanda_segreta,String risposta){
+        this.username=username;
+        this.nome=nome;
+        this.cognome=cognome;
+        this.email=email;
+        this.domanda_segreta=domanda_segreta;
+        this.risposta=risposta;
+    }
+
     public String getUsername() {
         return username;
     }
