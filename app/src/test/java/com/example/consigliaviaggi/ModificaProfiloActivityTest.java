@@ -14,7 +14,7 @@ public class ModificaProfiloActivityTest {
     }
 
     @Test
-    public void isInvalidUsernameExpectedTrue() {
+    public void isInvalidUsernameSpaceBetweenWordsExpectedTrue() {
         String username = "st sivo";
         //This username is invalid (IsInvalidUsername==true),
         //because there's a space in between two words
@@ -29,7 +29,7 @@ public class ModificaProfiloActivityTest {
     }
 
     @Test
-    public void isInvalidTextExpectedTrue() {
+    public void isInvalidTextDoubleSpaceBetweenNamesExpectedTrue() {
         String nome = "Diego  Armando";
         //This nome is invalid (IsInvalidText==true),
         //because it has two spaces in the middle

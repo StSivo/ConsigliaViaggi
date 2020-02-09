@@ -35,7 +35,7 @@
         android:id="@+id/commento_recensione_form"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:hint="@string/prompt_commento_recensione"
         android:importantForAutofill="no"
@@ -47,10 +47,12 @@
 
     <TextView
         android:id="@+id/prompt_recensione_text"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_width="404dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="44dp"
         android:text="@string/prompt_recensione_text"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -71,13 +73,17 @@
 
     <Button
         android:id="@+id/invia_recensione_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_width="420dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="490dp"
+        android:backgroundTint="@color/colorPrimary"
         android:text="@string/prompt_invia_recensione"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/commento_recensione_form" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
         android:id="@+id/dati_switch"

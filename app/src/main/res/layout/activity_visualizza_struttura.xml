@@ -67,8 +67,7 @@
         android:layout_width="240dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="30dp"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descrizione_struttura_text" />
@@ -83,21 +82,24 @@
 
     <Button
         android:id="@+id/aggiungi_recensione_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="440dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="492dp"
+        android:backgroundTint="@color/colorPrimary"
         android:text="@string/prompt_aggiungi_recensione"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/visualizza_recensioni_view" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/seleziona_filtro_spinner"
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:entries="@array/filtro_recensione"
         android:prompt="@string/filtro_recensione_text"
         android:spinnerMode="dialog"

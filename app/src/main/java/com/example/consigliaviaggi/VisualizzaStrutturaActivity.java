@@ -70,6 +70,8 @@ public class VisualizzaStrutturaActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,risultati_ricerca);
         visualizza_recensioni_view.setAdapter(adapter);
 
+
+
         //Fill every text field
         nome_struttura_text.setText(struttura_selezionata.getNome());
         citta_struttura_text.setText(struttura_selezionata.getCitta());

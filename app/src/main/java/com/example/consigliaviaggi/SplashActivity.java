@@ -1,11 +1,22 @@
 package com.example.consigliaviaggi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+
+import com.example.consigliaviaggi.Model.Utente;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class SplashActivity extends Activity {
 
@@ -16,7 +27,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        int SPLASH_TIME_OUT = 2500;
+        int SPLASH_TIME_OUT = 200;
         new Handler().postDelayed(new Runnable() {
 
             /*
@@ -26,6 +37,23 @@ public class SplashActivity extends Activity {
 
             @Override
             public void run() {
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                // Create a reference to the Utenti collection
+                CollectionReference utentiRef = db.collection("Utenti");
+
+                // Create a query against the collection.
+                Query query = utentiRef;
+                //After creating a query object, use the get() function to retrieve the results
+                Task<QuerySnapshot> task = query.get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {}
+                        });
+
+                //Waiting for async task to complete
+                while(!task.isComplete()){}
+
                 // This method will be executed once the timer is over
                 // Start your app main activity
                 Intent i = new Intent(SplashActivity.this, MainActivity.class);

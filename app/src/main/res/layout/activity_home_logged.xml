@@ -18,25 +18,29 @@
 
     <Button
         android:id="@+id/modifica_profilo_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="120dp"
+        android:layout_width="270dp"
+        android:layout_height="96dp"
+        android:layout_marginEnd="144dp"
         android:layout_marginBottom="28dp"
+        android:background="@color/colorPrimary"
         android:text="@string/modifica_profilo"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tipo_struttura_text"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/logout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="44dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="172dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginBottom="22dp"
+        android:backgroundTint="@color/colorSecondary"
         android:text="@string/logout"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tipo_struttura_text"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tipo_struttura_text"
@@ -44,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:text="@string/tipo_struttura_text"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tipo_struttura_spinner"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,8 +71,9 @@
         android:id="@+id/fascia_prezzo_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="9dp"
         android:text="@string/fascia_prezzo_text"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/prezzo_min"
         app:layout_constraintEnd_toEndOf="parent"
@@ -150,9 +156,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
         android:layout_marginBottom="104dp"
+        android:backgroundTint="@color/colorPrimary"
         android:text="@string/ricerca"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/proximity_checkBox" />
 
