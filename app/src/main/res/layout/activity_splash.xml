@@ -54,4 +54,15 @@
         android:textColor="#454545"
         android:textSize="12sp" />
 
+    <TextView
+        android:id="@+id/spash_app_inizializzazione_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="169dp"
+        android:text="@string/splash_app_inizializzazione_text"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>
